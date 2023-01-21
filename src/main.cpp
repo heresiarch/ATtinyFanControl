@@ -74,20 +74,27 @@ uint16_t adc_read(void)
 
 int main(void)
 {
+    // init stuff 
     pwm_init();
     pwm_set_frequency(N_1);
     adc_init();
+    // loop forever
     while(true){
+      // read adc value between 0 and 1023
       uint16_t reading = adc_read();
+      // convert adc value to ° Celsius
+      // 20.0 degrees are returned as 200, 25.1 degress as 251 ...
       int16_t temp = NTC_ADC2Temperature(reading);
+      // map temperature between 20 °C or 70 °C to PWM Duty Cycle of 0-255
       int16_t mapped = map(temp,200,700,0,255);
+      // respect the boundaries
       if(mapped > 255){
         mapped = 255;
       }
       else if(mapped < 0){
         mapped = 0;
       }
+      // set PWM
       pwm_set_duty(mapped);
-      //_delay_ms(100);
     }
 }
