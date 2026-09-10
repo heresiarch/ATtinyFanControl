@@ -15,6 +15,7 @@ https://www.sebulli.com/ntc/index.php
 The circuit and code should be self explanatory.
 ![Alt text][def3]
 
+
 Example screenshots of changing pulse width on NTC with different temperatures and the frequency of about 32kHz.
 ![PWM1][def1]
 
